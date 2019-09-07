@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>440961343830-ht0g142kg97dh3nul632tratp2ruj5nh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.440961343830-ht0g142kg97dh3nul632tratp2ruj5nh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCiotbZOd_fZMgsZjWfLWRF55vvtoMum18</string>
+	<key>GCM_SENDER_ID</key>
+	<string>440961343830</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jaewoobyun.FirebaseSocialLogin</string>
+	<key>PROJECT_ID</key>
+	<string>fir-sociallogin-87085</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fir-sociallogin-87085.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:440961343830:ios:729a5558169d817e</string>
+	<key>DATABASE_URL</key>
+	<string>https://fir-sociallogin-87085.firebaseio.com</string>
+</dict>
+</plist>
