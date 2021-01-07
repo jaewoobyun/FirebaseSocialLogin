@@ -12,8 +12,11 @@ import Firebase
 import GoogleSignIn
 import KakaoOpenSDK
 
+import AuthenticationServices
+
 
 class ViewController: UIViewController, LoginButtonDelegate, GIDSignInUIDelegate {
+	
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,12 +27,43 @@ class ViewController: UIViewController, LoginButtonDelegate, GIDSignInUIDelegate
 		
 		setupKakaoButtons()
 		
+		setupAppleButtons()
+		
+	}
+	
+	fileprivate func setupAppleButtons() {
+		if #available(iOS 13.0, *) {
+			let appleButton = ASAuthorizationAppleIDButton()
+			appleButton.frame = CGRect(x: 16, y: 446, width: view.frame.width - 32, height: 50)
+			appleButton.addTarget(self, action: #selector(appleIDButtonTapped), for: UIControl.Event.touchUpInside)
+			
+			
+		} else {
+			// Fallback on earlier versions
+		}
+				
+	}
+	
+	@objc func appleIDButtonTapped() {
+		if #available(iOS 13.0, *) {
+			let request = ASAuthorizationAppleIDProvider().createRequest()
+			request.requestedScopes = [.fullName, .email]
+			
+			let controller = ASAuthorizationController(authorizationRequests: [request])
+			controller.delegate = self
+			controller.presentationContextProvider = self
+			controller.performRequests()
+		} else {
+			// Fallback on earlier versions
+		}
+		
 	}
 	
 	fileprivate func setupKakaoButtons() {
 		//kakao sign in button
-		let kakaoButton = UIButton() //FIXME: here
+		let kakaoButton = KOLoginButton()
 		kakaoButton.frame = CGRect(x: 16, y: 116 + 66 + 66 + 66, width: view.frame.width - 32, height: 50)
+		kakaoButton.addTarget(self, action: #selector(kakaoLogin), for: UIControl.Event.touchUpInside)
 		view.addSubview(kakaoButton)
 		
 		let customKakaoButton = UIButton()
@@ -100,8 +134,68 @@ class ViewController: UIViewController, LoginButtonDelegate, GIDSignInUIDelegate
 		}
 	}
 	
+//	@objc func handleKakaoLogin() {
+//		print("handle Kakao Login")
+//		guard let session = KOSession.shared() else { return }
+//
+//		if session.isOpen() {
+//			session.close()
+//		}
+//
+//		session.open { (error) -> Void in
+//			if !session.isOpen() {
+//				if let error = error as NSError? {
+//					switch error.code {
+//					case Int(KOErrorCancelled.rawValue):
+//						break
+//					default:
+//						UIAlertController.showMessage(error.description)
+//					}
+//				}
+//			}
+//		}
+//	}
+	
+	//--------------------
+	@objc func kakaoLogin(/*_ sender: Any*/) {
+		//이전 카카오톡 세션 열려있으면 닫기
+		guard let session = KOSession.shared() else {
+			return
+		}
+		if session.isOpen() {
+			session.close()
+		}
+		session.open(completionHandler: { (error) -> Void in
+			if error == nil {
+				if session.isOpen() {
+					//accessToken
+					print(session.token?.accessToken)
+				} else {
+					print("Login failed")
+				}
+			} else {
+				print("Login error : \(String(describing: error))")
+			}
+			if !session.isOpen() {
+				if let error = error as NSError? {
+					switch error.code {
+					case Int(KOErrorCancelled.rawValue):
+						break
+					default:
+						//간편 로그인 취소
+						print("error : \(error.description)")
+					}
+				}
+			}
+		})
+	}
+	
+	//--------------
+	
+	
 	@objc func handleCustomKakaoLogin() {
-		print("handle Custom Kakao Login Logic")
+		print("handle Custom Kakao Login")
+		kakaoLogin()
 	}
 	
 	func showEmailAddress() {
@@ -146,3 +240,24 @@ class ViewController: UIViewController, LoginButtonDelegate, GIDSignInUIDelegate
 
 }
 
+
+extension ViewController: ASAuthorizationControllerDelegate {
+	func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+		if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+			if let email = credential.email {
+				print(email)
+			}
+			
+//			let userID = credential.user
+			
+		}
+	}
+}
+
+extension ViewController: ASAuthorizationControllerPresentationContextProviding {
+	func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+		return self.view.window!
+	}
+	
+	
+}

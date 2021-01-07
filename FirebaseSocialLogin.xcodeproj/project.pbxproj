@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3BBAF3EC0B76B70F27096BDB /* Pods_FirebaseSocialLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 972CE46E26C99DE10865F24E /* Pods_FirebaseSocialLogin.framework */; };
 		DB10DDA523222D7300BDF9F3 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB10DDA423222D7300BDF9F3 /* KakaoOpenSDK.framework */; };
+		DB10DDA8232360CF00BDF9F3 /* AlertExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB10DDA7232360CF00BDF9F3 /* AlertExtensions.swift */; };
 		DBEBA2992319516200240F27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEBA2982319516200240F27 /* AppDelegate.swift */; };
 		DBEBA29B2319516200240F27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEBA29A2319516200240F27 /* ViewController.swift */; };
 		DBEBA29E2319516200240F27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBEBA29C2319516200240F27 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		AA7436BFD4937097E923E7E4 /* Pods-FirebaseSocialLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseSocialLogin.release.xcconfig"; path = "Target Support Files/Pods-FirebaseSocialLogin/Pods-FirebaseSocialLogin.release.xcconfig"; sourceTree = "<group>"; };
 		DB10DDA423222D7300BDF9F3 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		DB10DDA62323580800BDF9F3 /* KakaoOpenSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KakaoOpenSDK-Bridging-Header.h"; sourceTree = "<group>"; };
+		DB10DDA7232360CF00BDF9F3 /* AlertExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtensions.swift; sourceTree = "<group>"; };
 		DBEBA2952319516200240F27 /* FirebaseSocialLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirebaseSocialLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBEBA2982319516200240F27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBEBA29A2319516200240F27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				DBEBA2AA23195CB600240F27 /* FirebaseSocialLogin.entitlements */,
 				DBEBA2982319516200240F27 /* AppDelegate.swift */,
 				DBEBA29A2319516200240F27 /* ViewController.swift */,
+				DB10DDA7232360CF00BDF9F3 /* AlertExtensions.swift */,
 				DBEBA29C2319516200240F27 /* Main.storyboard */,
 				DBEBA29F2319516400240F27 /* Assets.xcassets */,
 				DBEBA2A12319516400240F27 /* LaunchScreen.storyboard */,
@@ -240,6 +243,7 @@
 			files = (
 				DBEBA29B2319516200240F27 /* ViewController.swift in Sources */,
 				DBEBA2992319516200240F27 /* AppDelegate.swift in Sources */,
+				DB10DDA8232360CF00BDF9F3 /* AlertExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +398,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FirebaseSocialLogin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -418,6 +423,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FirebaseSocialLogin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

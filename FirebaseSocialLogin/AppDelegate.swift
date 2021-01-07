@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import Firebase
 import GoogleSignIn
+import KakaoOpenSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -37,6 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 		//perform any operations when the user disconnects from app here.
 	}
 	
+	private func setupSessionChangeNotification() {
+		NotificationCenter.default.addObserver(forName: NSNotification.Name.KOSessionDidChange, object: nil, queue: .main) { [unowned self](noti) in
+			guard let session = noti.object as? KOSession else {return}
+			session.isOpen() ? print("Kakao Login") : print("Kakao Logout")
+			//setupRootViewController()
+		}
+	}
+	
 	var window: UIWindow?
 
 
@@ -54,9 +63,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 	
 	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 		
+		//Facebook?
 		let handled = ApplicationDelegate.shared.application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
 		
+		//Google?
 		GIDSignIn.sharedInstance()?.handle(url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+		
+		//Kakao?
+		if KOSession.handleOpen(url) {
+			return true
+		}
+		
+		
 		
 		return handled
 //		return GoogleHandled
